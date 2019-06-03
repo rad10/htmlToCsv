@@ -1,0 +1,17 @@
+{
+    "editor.formatOnSave": true,
+    "python.linting.pylintEnabled": true,
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "*.class": true,
+        "**/*.class": true,
+        "*.exe": true,
+        "**/*.exe": true
+    },
+    "workbench.settings.useSplitJSON": true
+}
