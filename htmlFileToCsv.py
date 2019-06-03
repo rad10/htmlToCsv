@@ -32,6 +32,14 @@ def isNum(num):
     except:
         return False
 
+def help():
+    print(__file__, "[OPTION]","[HTML File]")
+    print("This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.")
+    print("INSTRUCTIONS: save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.")
+    print("OPTIONS:")
+    print("-h | --help\t\t\tPrints this help screen.")
+    print("-d | --display\t\t\tPrints the output of the CSV into the console as well as into the file.")
+
 
 # Generator
 def getContentArray(file):
@@ -106,8 +114,7 @@ def main():
     if len(argv) > 1:
         for i in argv[1:]:
             if (i == "/help" or i == "-help" or i == "==help" or i == "-h" or i == "/h"):
-                # help()
-                continue
+                help()
             elif (i == "/d"or i == "-d"or i == "/display"or i == "-display"or i == "--display"):
                 display = True
             if (i.split(".")[1].lower() == "html"):
@@ -123,7 +130,7 @@ def main():
         #debug("listdir: " + str(input))
     if(len(input)==0):
         print("ERROR: No HTML Files imported and none in current directory!")
-        #help()
+        help()
     output = ''
     for i in input:
         # debug(i+":"+i.split(".")[1].lower())
