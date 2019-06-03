@@ -264,6 +264,16 @@ public class htmlFileToCsv {
         return result;
     }
 
+    public static void help() {
+        System.out.println("htmlFileToCsv.java [OPTIONS] [HTML Files]");
+        System.out.println(
+                "This program is intended to turn data taken from inkspace into a CSV format for use in Excel.");
+        System.out.println(
+                "INSTRUCTIONS: Save inkspace output to a HTML file in the same directory as this program. Run this program. Profit.");
+        System.out.println("OPTIONS:");
+        System.out.println("");
+    }
+
     public static void main(String args[]) {
         List<String> input = new ArrayList<String>();
         Boolean display = false; // remove when done with experiment
