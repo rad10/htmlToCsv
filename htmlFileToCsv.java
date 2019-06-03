@@ -266,15 +266,18 @@ public class htmlFileToCsv {
 
     public static void main(String args[]) {
         List<String> input = new ArrayList<String>();
-        Boolean reveal = false; // remove when done with experiment
+        Boolean display = false; // remove when done with experiment
         if (args.length > 0) {
             for (String i : args) {
-                if (i.endsWith(".html"))
+                if (i.equals("/h") || i.equals("-h") || i.equals("/help") || i.equals("-help") || i.equals("--help"))
+                    help();
+                else if (i.equals("/d") || i.equals("-d") || i.equals("/display") || i.equals("-display")
+                        || i.equals("--display"))
+                    display = true;
+                else if (i.endsWith(".html"))
                     input.add(i);
                 else if ((new File(i + ".html")).exists())
                     input.add(i + ".html");
-                else if (i.equals("/reveal"))
-                    reveal = true;
             }
         } else {
             for (String i : getFilesInDirectory()) {
@@ -313,7 +316,7 @@ public class htmlFileToCsv {
         }
         debug(output, false);
 
-        if (reveal) {
+        if (display) {
             debug(output, true);
         }
         /* outputing to file */
