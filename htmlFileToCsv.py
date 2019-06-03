@@ -115,6 +115,7 @@ def main():
         for i in argv[1:]:
             if (i == "/help" or i == "-help" or i == "==help" or i == "-h" or i == "/h"):
                 help()
+                return
             elif (i == "/d"or i == "-d"or i == "/display"or i == "-display"or i == "--display"):
                 display = True
             if (i.split(".")[1].lower() == "html"):
@@ -131,6 +132,7 @@ def main():
     if(len(input)==0):
         print("ERROR: No HTML Files imported and none in current directory!")
         help()
+        return
     output = ''
     for i in input:
         # debug(i+":"+i.split(".")[1].lower())
