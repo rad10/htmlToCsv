@@ -1,7 +1,6 @@
 {
     "editor.formatOnSave": true,
-    "python.linting.pylintEnabled": true,
-    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "files.defaultLanguage": "java",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -9,9 +8,7 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "*.class": true,
-        "**/*.class": true,
-        "*.exe": true,
-        "**/*.exe": true
+        "**/*.class": true
     },
     "workbench.settings.useSplitJSON": true
 }
