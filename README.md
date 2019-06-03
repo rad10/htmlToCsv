@@ -10,3 +10,11 @@ The program is designed to open each HTML file and strip the data collected by i
 With this dictionary of names, it then sets it up in a CSV format and either creates a names.csv file or adds it to a currently existing file. From here the information gets passed down via the CSV file to wherever it needs to be, particularly excel.
 
 and that is the full intention of this program.
+
+### Java
+
+This variant takes advantage of Object Oriented Programming to better organize and control the manipulation of strings in the program.
+
+This application should in theory work on both windows and linux, however it has not been tested on linux as of yet.
+
+Full documentation of functions and use can be found in `/docs` if intended to be used as an api.
