@@ -68,30 +68,33 @@ def arrayToCsv(directory): #takes a matrix and returns a string in csv format
 
 
 #Actual Script
-input = []
-if len(argv) > 1:
-    for i in argv[1:]:
-        if (i.split(".")[1].lower() == "html"):
-            input.append(i)
-    #debug("argv: " + str(input))
-else:
-    for i in listdir():
-        try:
-            if (i.split(".")[1] == "html"):
+def main():
+    input = []
+    if len(argv) > 1:
+        for i in argv[1:]:
+            if (i.split(".")[1].lower() == "html"):
                 input.append(i)
-        except: continue
-    #debug("listdir: " + str(input))
-output = ''
-for i in input:
-    #debug(i+":"+i.split(".")[1].lower())
-    output += arrayToCsv(getContentArray(i))
-    try: 
-        unlink(i) #deletes the html used as to not accidentally add it to csv again
-    except:
-        True
-    try: # incase the folder already doesnt exist
-        rmtree(str(i.split(".")[0] + "_files")) #removes folder
-    except:
-        True
-#debug(("output:",output))
-appendToFile("names.csv", output)
+        #debug("argv: " + str(input))
+    else:
+        for i in listdir():
+            try:
+                if (i.split(".")[1] == "html"):
+                    input.append(i)
+            except: continue
+        #debug("listdir: " + str(input))
+    output = ''
+    for i in input:
+        #debug(i+":"+i.split(".")[1].lower())
+        output += arrayToCsv(getContentArray(i))
+        try: 
+            unlink(i) #deletes the html used as to not accidentally add it to csv again
+        except:
+            True
+        try: # incase the folder already doesnt exist
+            rmtree(str(i.split(".")[0] + "_files")) #removes folder
+        except:
+            True
+    #debug(("output:",output))
+    appendToFile("names.csv", output)
+
+main()
