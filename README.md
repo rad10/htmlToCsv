@@ -11,3 +11,9 @@ The program is designed to open each HTML file and strip the data collected by i
 With this dictionary of names, it then sets it up in a CSV format and either creates a names.csv file or adds it to a currently existing file. From here the information gets passed down via the CSV file to wherever it needs to be, particularly excel.
 
 and that is the full intention of this program.
+
+### JavaScript
+
+#### !!!Warning: this script is not finished and does not work as intended yet!!!
+
+This variant is intended as a possible portable variant of this tool. One that can work on both windows or linux either via Node.js or a web interface to be packaged along with the program.
