@@ -279,9 +279,10 @@ public class htmlFileToCsv {
         Boolean display = false; // remove when done with experiment
         if (args.length > 0) {
             for (String i : args) {
-                if (i.equals("/h") || i.equals("-h") || i.equals("/help") || i.equals("-help") || i.equals("--help"))
+                if (i.equals("/h") || i.equals("-h") || i.equals("/help") || i.equals("-help") || i.equals("--help")) {
                     help();
-                else if (i.equals("/d") || i.equals("-d") || i.equals("/display") || i.equals("-display")
+                    return;
+                } else if (i.equals("/d") || i.equals("-d") || i.equals("/display") || i.equals("-display")
                         || i.equals("--display"))
                     display = true;
                 else if (i.endsWith(".html"))
@@ -289,11 +290,17 @@ public class htmlFileToCsv {
                 else if ((new File(i + ".html")).exists())
                     input.add(i + ".html");
             }
-        } else {
+        }
+        if (input.size() == 0) {
             for (String i : getFilesInDirectory()) {
                 if (i.endsWith(".html"))
                     input.add(i);
             }
+        }
+        if (input.size() == 0) {
+            System.out.println("ERROR: No HTML files in arguements nor in directory!");
+            help();
+            return;
         }
         debug(input);
         List<String> output = new ArrayList<String>(); // this is roughly the entire object since it holds all the
