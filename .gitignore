@@ -52,3 +52,9 @@ sheet2_files/
 sheet1.html
 sheet2.html
 .vscode/ipch/
+
+# Program file exclusions
+bin/
+build/
+*.class
+**/*.class
