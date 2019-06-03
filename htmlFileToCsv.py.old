@@ -1,0 +1,144 @@
+from sys import argv
+from os import listdir, unlink
+from shutil import rmtree
+##Functions
+def readfile(dir):
+    return open(dir, "r").read()
+def exportToFile(dir, content):
+    open(dir, "w").write(content)
+def appendToFile(dir, content):
+    try:
+        inside = open(dir, "r").read()
+        open(dir, "w").write(inside + content)
+    except:
+        open(dir, "w").write(content)
+def isNum(num):
+    try: return float(str(num)).is_integer()
+    except: return False
+
+
+#Generator
+def getContentArray(file):
+    lines = readfile(file).split("\n")
+    directory = []
+    text = lines[2][lines[2].find("<textarea")+22:]
+    for i in range(3,len(lines)):
+        if (text.find("</textarea>")==-1):
+            text = text + "\n" + lines[i]
+        else: break;
+    people = text[:text.find("</textarea>")].split("\n")
+    for i in people:
+        attr = i.split(" ")
+        if (len(attr)>=5):
+#                         FirstName, LastName, timeIn, timeOut, hours, purpose
+            directory.append([attr[0], attr[1], attr[2], attr[3], attr[4], ''.join(str(x+" ") for x in attr[5:])])
+            directory[-1][5] = directory[-1][5][:len(directory[-1][5])-1]
+        else:
+            try:
+                hold = []
+                #firstname
+                if not (attr[0].isdigit() or attr[1].isdigit()):
+                    hold[0] = str(attr[0]+" "+attr[1])
+                elif (attr[1].regex("[:.,;]") or attr[1].isdigit()):
+                    hold[0] = attr[0]
+                    hold[1] = hold[1]
+                #time in
+                if (hold[1] != attr[1]):
+                    hold[2] = attr[1]
+                hold[1].replace(".",":")
+                hold[1].replace(",",":")
+                hold[1].replace(";",":")
+                
+                if (hold[1].isdigit()):
+                    if len(hold[1]) == 4:
+                        hold[1] = str(hold[1][0:1]+":"+hold[1][2:3])
+                    elif len(hold[1]) == 3:
+                        hold[1] == str(hold[1][0]+":"+hold[1][1:2])
+                    elif len(hold[1]) < 3:
+                        hold[1] == str(hold[1]+":00")
+                    elif len(hold[1]) > 4:
+                        hold[1] == ""
+                elif ":" in hold[1]:
+                    if not (hold[1].split(":")[0].isdigit() and hold[1].split(":")[0].isdigit()):
+                        hold[1] == ""
+                
+                #time out
+                if (hold[2] != attr[2]):
+                    hold[3] = attr[2]
+                hold[2].replace(".",":")
+                hold[2].replace(",",":")
+                hold[2].replace(";",":")
+                hold[2].replace("=",":")
+                
+                if (hold[1].isdigit()):
+                    if len(hold[2]) == 4:
+                        hold[2] = str(hold[2][0:1]+":"+hold[2][2:3])
+                    elif len(hold[2]) == 3:
+                        hold[2] == str(hold[2][0]+":"+hold[2][1:2])
+                    elif len(hold[2]) < 3:
+                        hold[2] == str(hold[2]+":00")
+                    elif len(hold[2]) > 4:
+                        hold[2] == ""
+                elif ":" in hold[2]:
+                    if not (hold[2].split(":")[0].isdigit() and hold[2].split(":")[0].isdigit()):
+                        hold[2] == ""
+                
+                #hours
+                if (hold[3] != attr[3]):
+                    hold[4] = attr[3]
+                if not (isnum(hold[3])):
+                    hold[4] = hold[3]
+                    if (hold[1] != "" and hold[2] != ""):
+                        timeout = hold[2].split(":")
+                        timein = hold[1].split(":")
+                        hold[3] = float(float(timeout[0] + timeout[1]/60) - float(timein[0] + timein[1]/60))
+                    else:
+                        hold[3] = ""
+                
+                #purpose
+                if hold[4] in attr:
+                    for e in range(len(attr)):
+                        if (hold[4] == attr[e]):
+                            hold[4] = hold[4].join(str(" "+x) for x in attr[e:])
+                else:
+                    hold[4] = ""
+                
+                print(hold)
+                directory.append(hold)
+            except:
+                directory.append(attr)
+    return directory
+
+def arrayToCsv(directory):
+    cvarray = ''
+    for i in range(len(directory)):
+        for e in range(len(directory[i])-1):
+            if (isNum(directory[i][e])):
+                cvarray += (directory[i][e]+", ")
+            else: cvarray += (directory[i][e]+", ")
+        cvarray += (directory[i][-1]+"\n")
+    return (cvarray+"\n")
+
+
+#Actual Script
+input = []
+if len(argv) > 1:
+    for i in argv[1:]:
+        if (i.split(".")[1].lower() == "html"):
+            input.append(i)
+    #print("argv: " + str(input))
+else:
+    for i in listdir():
+        try:
+            if (i.split(".")[1] == "html"):
+                input.append(i)
+        except: continue
+    #print("listdir: " + str(input))
+output = ''
+for i in input:
+    #print(i+":"+i.split(".")[1].lower())
+    output += arrayToCsv(getContentArray(i))
+    unlink(i)
+    rmtree(str(i.split(".")[0] + "_files"))
+#print(output)
+appendToFile("names.csv", output)
