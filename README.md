@@ -11,3 +11,9 @@ The program is designed to open each HTML file and strip the data collected by i
 With this dictionary of names, it then sets it up in a CSV format and either creates a names.csv file or adds it to a currently existing file. From here the information gets passed down via the CSV file to wherever it needs to be, particularly excel.
 
 and that is the full intention of this program.
+
+### PowerShell
+
+#### !!!Warning: this script is not finished and does not work as intended yet!!!
+
+This script variant is meant to be a backup for windows platform if C++ does not work for any reason. It requires the ability to enable a tightly hidden setting on windows to run foreign PowerShell scripts to be portable. This makes it a backup rather than a reliable tool.
