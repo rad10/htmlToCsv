@@ -22,7 +22,11 @@ def isNum(num):
 
 
 #Generator
-def getContentArray(file): #the purpose of the function is to take all the content in the html and return a matrix array
+def getContentArray(file):
+    """the purpose of the function is to take all the content in the HTML and return a matrix array.
+    file: a string containing the contents from a file given by readfile().
+    return: a string[][] matrix with important data scraped from file.
+    """
     lines = readfile(file).split("\n")
     #debug(("lines:", lines))
     directory = [] #the matrix used to store conent
@@ -55,7 +59,11 @@ def getContentArray(file): #the purpose of the function is to take all the conte
         debug(("directory:", directory))
     return directory # returns the matrix
 
-def arrayToCsv(directory): #takes a matrix and returns a string in csv format
+def arrayToCsv(directory):
+    """takes a matrix and returns a string in CSV format.
+    var directory: a string[][] matrix that contains the information of people at the center.
+    returns: a string that contains all the information in CSV format.
+    """
     cvarray = ''
     for i in range(len(directory)):
         for e in range(len(directory[i])-1):
