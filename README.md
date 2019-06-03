@@ -19,3 +19,12 @@ This variant takes advantage of Object Oriented Programming to better organize a
 This application should in theory work on both windows and linux, however it has not been tested on linux as of yet.
 
 Full documentation of functions and use can be found in `/docs` if intended to be used as an api.
+
+#### Manual
+
+> ``*htmlFileToCsv.java [OPTIONS] [HTML Files]*``
+>> ``This program is intended to turn data taken from inkspace into a CSV format for use in Excel.``
+>> ``*INSTRUCTIONS:* Save inkspace output to a HTML file in the same directory as this program. Run this program. Profit.``
+>> ``OPTIONS:``
+>>> ``/h | --help\t\t\tShows this screen``
+>>> ``/d | --display\t\t\tDisplays result of CSV in the console as well as in the file.``
