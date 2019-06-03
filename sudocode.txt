@@ -1,0 +1,95 @@
+Function readFile(String dir){
+    return fileContent(dir)
+}
+
+Function getContentArray(String file){
+    Integer startIndex = 2
+    String[] dictionary
+    String htmldata = readFile(file)
+    String[] htmllines = htmldata.split("\n")
+    String contenttext = htmllines[2]
+    contenttext = contenttext.substring(find('<textarea readonly="">'), contenttext.end)
+    for i in (3, htmllines.length){
+        if cannotFind("</textarea>"){
+            contenttext = (contenttext + "\n" + htmllines[i])
+        } else break
+    }
+    contenttext = contenttext.substring(contenttext.start, find("</textarea>"))
+    String[] rawpeople = contenttext.split("\n")
+    for i in rawpeople {
+        String[] refinedAttributes
+        String[] attributes = i.split(" ")
+        if attributes.length >= 5 {
+            String firstname = attributes[0]
+            String lastname = attributes[1]
+            String name = (firstname + " " + lastname)
+            Time timein = attributes[2]
+            Time timeout = attributes[3]
+            Integer hours = attributes[4] or (timeout - timein)
+            String purpose = attributes[5: attributes.length]
+            refinedAttributes = [name, timein, timeout, hours, purpose]
+        }
+        else if (attributes.length > 1){ //aka the attributes is atleast 2
+            firstname = attributes[0]
+            lastname = attributes[1]
+            name = (firstname + " " + lastname)
+            if attributes.length > 2 {
+                refinesAttributes = [name] + attributes[2:end]
+            }
+        }
+        else {
+            dictionary.add(attributes)
+        }
+    }
+    return dictionary
+}
+Function dictionaryToCsv(String[][] dictionary) {
+    String printoutForCsv
+    for indexPeople in index dictionary {
+        for indexAttributes in index dictionary[indexPeople] {
+            printoutForCsv = (printoutForCsv + dictionary[indexPeople][indexAttributes] + ", ")
+        }
+        printoutForCsv = (printoutForCsv + dictionary[indexPeople][end] + "\n")
+    }
+    return printoutForCsv // as a string
+}
+Function main(String args) {
+    String[] inputFiles
+    if args.length > 1 { // security incase no files were inputted
+        files = args[1, end]
+        for file in files {
+            if file.split(".")[1] == "html" { // if is .html
+                inputFiles.add(file)
+            }
+        }
+    } else {
+        for file in listDirectory() {
+            try { // incase its a folder or a file without an extension
+                if file.split(".")[1] == "html" { //if file is .html
+                    inputFiles.add(file)
+                }
+            }
+        }
+    }
+    String outputForCsv
+    // take each file and add it to final text to csv
+    for file in inputFiles {
+        String[][] dictionary = getContentArray(file)
+        String printableCsv = dictionaryToCsv(dictionary)
+        outputForCsv = (outputForCsv + printableCsv) // output = 'person.name, person.timein, person.timeout, person.hours, person.purpose\n...'
+
+        // remove old files to prevent readdition
+        delete(file) // delete example.html
+        String fileName = file.split(".")[0] // [example] . html
+        removeFolderAndContents(name + "_files") //remove 'example_files'
+    }
+    if "names.csv" exists {
+        String oldContents = readFile("names.csv")
+        writeFile("names.csv", (oldContents + outputForCsv))
+    }
+    else { // if the file hasnt been created yet
+        createFile("names.csv")
+        writeFile("names.csv", outputForCsv)
+    }
+}
+done
