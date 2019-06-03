@@ -264,59 +264,17 @@ public class htmlFileToCsv {
         return result;
     }
 
-    /**
-     * This function is not to go with the main program for it could be used as an
-     * exploit. it will ask the user to add parameters for an additional person
-     */
-    private static String inject() {
-        Scanner sc = new Scanner(System.in);
-
-        /* terminal Explanation */
-        String explanation = "###################\nDatabase Injection\n###################\nThis command will add an additional person to the roster in its own sheet. This should not be in the final product, but its for fun.\nPlace in the correct information, or just enter a space.\n";
-        System.out.println(explanation);
-        System.out.print("Please give the date: ");
-        String date = sc.nextLine();
-        System.out.print("Please give a full name: ");
-        String name = sc.nextLine();
-        System.out.print("Please give a sign in time: ");
-        String timeIn = sc.nextLine();
-        System.out.print("Please give a sign out time: ");
-        String timeOut = sc.nextLine();
-        System.out.print("Please give your Hours: ");
-        String hours = sc.nextLine();
-        System.out.print("Please give your prupose for visiting: ");
-        String purpose = sc.nextLine();
-        sc.close();
-
-        String csv = "";
-        if (!(name.isEmpty() || name.equals(" ")))
-            csv += name;
-        if (!(timeIn.isEmpty() || timeIn.equals(" ")))
-            csv += ", " + timeIn;
-        if (!(timeOut.isEmpty() || timeOut.equals(" ")))
-            csv += ", " + timeOut;
-        if (!(hours.isEmpty() || hours.equals(" ")))
-            csv += ", " + hours;
-        if (!(purpose.isEmpty() || purpose.equals(" ")))
-            csv += ", " + purpose;
-        return csv;
-    }
-
     public static void main(String args[]) {
         List<String> input = new ArrayList<String>();
-        Boolean inject = false, reveal = false; // remove when done with experiment
+        Boolean reveal = false; // remove when done with experiment
         if (args.length > 0) {
             for (String i : args) {
                 if (i.endsWith(".html"))
                     input.add(i);
                 else if ((new File(i + ".html")).exists())
                     input.add(i + ".html");
-                else if (i.equals("/inject")) {
-                    inject = true;
-                    continue;
-                } else if (i.equals("/reveal")) {
+                else if (i.equals("/reveal"))
                     reveal = true;
-                }
             }
         } else {
             for (String i : getFilesInDirectory()) {
@@ -355,10 +313,6 @@ public class htmlFileToCsv {
         }
         debug(output, false);
 
-        /* inject contingency */
-        if (inject) {
-            output.add(inject());
-        }
         if (reveal) {
             debug(output, true);
         }
