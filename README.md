@@ -21,3 +21,12 @@ The python variation of this application was the origional version of this progr
 requires no additional libraries to run.
 
 This variant contains internal `debug()` methods that will activate when `Debug = True` to see what values are in script. (or you can use breakpoints for debugging.)
+
+#### Help
+
+> ``*htmlFileToCsv.py [OPTION] [HTML File]*``
+>> ``This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.``
+>> ``*INSTRUCTIONS:* save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.``
+>> ``*OPTIONS:*``
+>>> ``-h | --help\t\t\tPrints this help screen.``
+>>> ``-d | --display\t\t\tPrints the output of the CSV into the console as well as into the file.``
