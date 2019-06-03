@@ -1,6 +1,7 @@
 {
     "editor.formatOnSave": true,
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "files.defaultLanguage": "c++",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
