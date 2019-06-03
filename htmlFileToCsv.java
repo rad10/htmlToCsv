@@ -271,7 +271,8 @@ public class htmlFileToCsv {
         System.out.println(
                 "INSTRUCTIONS: Save inkspace output to a HTML file in the same directory as this program. Run this program. Profit.");
         System.out.println("OPTIONS:");
-        System.out.println("");
+        System.out.println("/h | --help\t\t\tShows this screen");
+        System.out.println("/d | --display\t\t\tDisplays result of CSV in the console as well as in the file.");
     }
 
     public static void main(String args[]) {
