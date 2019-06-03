@@ -10,3 +10,13 @@ The program is designed to open each HTML file and strip the data collected by i
 With this dictionary of names, it then sets it up in a CSV format and either creates a names.csv file or adds it to a currently existing file. From here the information gets passed down via the CSV file to wherever it needs to be, particularly excel.
 
 and that is the full intention of this program.
+
+### C++
+
+#### !!!Warning: this script is incomplete and does not work as intended yet!!!
+
+This variant is mostly setup for windows environment but it is made to work for both windows and linux.
+
+> Tested with *[MinGW32](https://http://www.mingw.org)*
+
+All setting should be setup properly with this variant. If you choose to use a different compiler, you may need to edit settings for it to work (if youre using vscode that is).
