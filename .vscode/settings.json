@@ -1,6 +1,7 @@
 {
     "editor.formatOnSave": true,
-    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
     "files.defaultLanguage": "c++",
     "files.exclude": {
         "**/.git": true,
