@@ -1,6 +1,12 @@
 from sys import argv
 from os import listdir, unlink
 from shutil import rmtree
+
+try:
+    import pyexcel
+except:
+    print("ERROR: pyexcel is not installed!\nTo install and run this command, open a command prompt and run:\npip install pyexcel\nAfter doing that, run this script again.")
+
 # Functions
 Debug = False
 
@@ -32,8 +38,9 @@ def isNum(num):
     except:
         return False
 
+
 def help():
-    print(__file__, "[OPTION]","[HTML File]")
+    print(__file__, "[OPTION]", "[HTML File]")
     print("This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.")
     print("INSTRUCTIONS: save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.")
     print("OPTIONS:")
@@ -129,7 +136,7 @@ def main():
             except:
                 continue
         #debug("listdir: " + str(input))
-    if(len(input)==0):
+    if(len(input) == 0):
         print("ERROR: No HTML Files imported and none in current directory!")
         help()
         return
