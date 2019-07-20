@@ -52,6 +52,7 @@ sheet2_files/
 sheet1.html
 sheet2.html
 .vscode/ipch/
+namse.csv
 
 # Program file exclusions
 *.pyc
