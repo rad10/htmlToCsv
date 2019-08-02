@@ -1,13 +1,28 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
-std::string readfile(std::string filename)
+using namespace std
+
+    string
+    readfile(string filename)
 {
-    std::string result = "";
+    string result = "";
     ifstream src;
     src.open(filename);
-    while (src.eof()) {
+    while (src.eof())
+    {
         src >> "\n" >> result;
     }
     return result;
+}
+string[][] getContentArray(string file)
+{
+    stringstream lines(readfile(file));
+    string text, sc;
+    getline(sc, lines);
+    while (sc.find("<textarea") != -1)
+    {
+        getline(sc, lines);
+    }
 }
