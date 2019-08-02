@@ -4,7 +4,13 @@
 
 using namespace std;
 
-string readfile(string filename)
+struct database
+{
+    string name, timeIn, timeOut, purpose;
+};
+
+string
+readfile(string filename)
 {
     string result = "";
     ifstream src;
@@ -16,14 +22,14 @@ string readfile(string filename)
     }
     return result;
 }
-string[][] getContentArray(string file)
+database getContentArray(string file)
 {
     stringstream lines(readfile(file));
     string text, sc;
-    getline(sc, lines);
+    lines >> sc;
     /* gets me to the beginning of the line that i need */
     while (sc.find("<textarea") != -1)
     {
-        getline(sc, lines);
+        lines >> sc;
     }
 }
