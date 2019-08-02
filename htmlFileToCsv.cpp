@@ -2,17 +2,17 @@
 #include <fstream>
 #include <sstream>
 
-using namespace std
+using namespace std;
 
-    string
-    readfile(string filename)
+string readfile(string filename)
 {
     string result = "";
     ifstream src;
     src.open(filename);
     while (src.eof())
     {
-        src >> "\n" >> result;
+        src >> result;
+        result += "\n";
     }
     return result;
 }
