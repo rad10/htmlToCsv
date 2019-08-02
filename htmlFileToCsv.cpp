@@ -21,6 +21,7 @@ string[][] getContentArray(string file)
     stringstream lines(readfile(file));
     string text, sc;
     getline(sc, lines);
+    /* gets me to the beginning of the line that i need */
     while (sc.find("<textarea") != -1)
     {
         getline(sc, lines);
