@@ -6,7 +6,9 @@ using namespace std;
 
 struct database
 {
-    string name, timeIn, timeOut, purpose;
+    string firstname, lastname, timeIn, timeOut;
+    int hours;
+    string purpose;
 };
 
 bool Debug = true;
