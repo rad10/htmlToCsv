@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ struct database
 };
 
 bool Debug = true;
+database *dict;
 
 string readfile(string filename)
 {
@@ -46,6 +48,8 @@ string getContentSource(string file)
 }
 void sourceToDictionary(string source)
 {
+    int size = count(source.begin(), source.end(), "\n") + 1;
+    dict = new database[size];
 }
 int main()
 {
