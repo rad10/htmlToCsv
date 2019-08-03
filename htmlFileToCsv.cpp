@@ -27,7 +27,7 @@ string readfile(string filename)
     src.close();
     return result;
 }
-string getContentArray(string file)
+string getContentSource(string file)
 {
     //cout << readfile(file);
     stringstream lines(readfile(file));
@@ -55,5 +55,5 @@ string getContentArray(string file)
 }
 int main()
 {
-    cout << getContentArray("sheet1.html");
+    cout << getContentSource("sheet1.html");
 }
