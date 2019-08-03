@@ -44,6 +44,9 @@ string getContentSource(string file)
     text += sc.substr(0, sc.find("</textarea>"));
     return text;
 }
+void sourceToDictionary(string source)
+{
+}
 int main()
 {
     cout << getContentSource("sheet1.html");
