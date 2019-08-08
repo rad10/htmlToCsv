@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <algorithm>
 
 using namespace std;
 
@@ -46,7 +45,24 @@ string getContentSource(string file)
     text += sc.substr(0, sc.find("</textarea>"));
     return text;
 }
-void sourceToDictionary(string source)
+/**
+ * this function was made to simplify the bs tools c++ gives for string manipulation.
+ */
+int countlines(string src)
+{
+    stringstream s(src);
+    string waste;
+    int count = 0;
+    while (getline(s, waste))
+    {
+        count++;
+    }
+    return count;
+}
+database *sourceToDictionary(string source)
+{
+    int size = countlines(source);
+    database h[size]; // = new database[size];
 {
     int size = count(source.begin(), source.end(), "\n") + 1;
     dict = new database[size];
