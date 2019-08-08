@@ -59,6 +59,17 @@ int countlines(string src)
     }
     return count;
 }
+void debugProfile(database p)
+{
+    cout << p.firstname << " " << p.lastname << ", " << p.timeIn << ", " << p.timeOut << ", " << p.hours << ", " << p.purpose << "\n";
+}
+void debugDictionary(database d[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        debugProfile(d[i]);
+    }
+}
 database *sourceToDictionary(string source)
 {
     int size = countlines(source);
