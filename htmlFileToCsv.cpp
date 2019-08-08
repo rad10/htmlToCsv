@@ -90,6 +90,35 @@ database *sourceToDictionary(string source)
     dict = h;
     return dict;
 }
+
+/**
+ * this function is meant to skip making the whole database part in my psuedocode. go from the raw data straight to CSV.
+ */
+string sourceToCsv(string source)
+{
+    stringstream src(source);
+    string line;
+    string result = "";
+    string firstname, lastname, timein, timeout, hour, tpurpose;
+    string purpose = "";
+    int hours;
+
+    stringstream buffer;
+    while (getline(src, line))
+    {
+        buffer.str(line);
+        buffer >> firstname >> lastname >> timein >> timeout >> hours >> purpose;
+        while (buffer >> tpurpose)
+        {
+            purpose += " " + tpurpose;
+        }
+        //hour = hours;
+        result += firstname + " " + lastname + "," + timein + "," + timeout + "," + to_string(hours) + "," + purpose + "\n";
+        purpose = "";
+        buffer.clear();
+    }
+    return result;
+}
 int main()
 {
     cout << getContentSource("sheet1.html");
