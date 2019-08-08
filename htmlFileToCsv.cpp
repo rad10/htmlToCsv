@@ -59,6 +59,7 @@ int countlines(string src)
     }
     return count;
 }
+
 void debugProfile(database p)
 {
     cout << p.firstname << " " << p.lastname << ", " << p.timeIn << ", " << p.timeOut << ", " << p.hours << ", " << p.purpose << "\n";
@@ -119,6 +120,19 @@ string sourceToCsv(string source)
     }
     return result;
 }
+
+void outputCSV(string source)
+{
+    stringstream src(source);
+    ofstream output("names.csv", ios::app);
+    string buffer;
+    while (getline(src, buffer))
+    {
+        output << buffer << "\n";
+    }
+    output << "\n";
+}
+
 int main()
 {
     cout << getContentSource("sheet1.html");
