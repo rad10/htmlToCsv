@@ -74,9 +74,21 @@ database *sourceToDictionary(string source)
 {
     int size = countlines(source);
     database h[size]; // = new database[size];
+    cout << source << "\n";
+    stringstream src(source);
+    int c = 0;
+    string buffer;
+    while (getline(src, buffer))
 {
-    int size = count(source.begin(), source.end(), "\n") + 1;
-    dict = new database[size];
+        stringstream line(buffer);
+        //cout << c << " " << buffer << "\n";
+        line >> h[c].firstname >> h[c].lastname >> h[c].timeIn >> h[c].timeOut >> h[c].hours >> h[c].purpose;
+        //debugProfile(h[c]);
+        c++;
+    }
+    //cout << c << "\n";
+    dict = h;
+    return dict;
 }
 int main()
 {
