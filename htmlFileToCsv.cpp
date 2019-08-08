@@ -135,5 +135,6 @@ void outputCSV(string source)
 
 int main()
 {
-    cout << getContentSource("sheet1.html");
+    string csv = sourceToCsv(getContentSource("sheet1.html"));
+    outputCSV(csv);
 }
