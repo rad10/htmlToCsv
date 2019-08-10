@@ -29,6 +29,23 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "build & compile file",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-o",
+                "${fileBasenameNoExtension}",
+                "${file}",
+                "-static",
+                "-static-libgcc",
+                "-static-libstdc++"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
