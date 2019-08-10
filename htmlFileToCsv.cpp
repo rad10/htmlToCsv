@@ -4,7 +4,15 @@
 
 using namespace std;
 
+/* struct database
+{
+    string firstname, lastname, timeIn, timeOut;
+    int hours;
+    string purpose;
+}; */
+
 bool Debug = true;
+// database *dict;
 
 /**
  * simple function designed just to open and output all the contents in the file specified.
@@ -48,7 +56,7 @@ string getContentSource(string file)
 /**
  * this function was made to simplify the bs tools c++ gives for string manipulation.
  */
-int countlines(string src)
+/* int countlines(string src)
 {
     stringstream s(src);
     string waste;
@@ -58,7 +66,39 @@ int countlines(string src)
         count++;
     }
     return count;
+} */
+
+/* void debugProfile(database p)
+{
+    cout << p.firstname << " " << p.lastname << ", " << p.timeIn << ", " << p.timeOut << ", " << p.hours << ", " << p.purpose << "\n";
 }
+void debugDictionary(database d[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        debugProfile(d[i]);
+    }
+}
+database *sourceToDictionary(string source)
+{
+    int size = countlines(source);
+    database h[size]; // = new database[size];
+    cout << source << "\n";
+    stringstream src(source);
+    int c = 0;
+    string buffer;
+    while (getline(src, buffer))
+    {
+        stringstream line(buffer);
+        //cout << c << " " << buffer << "\n";
+        line >> h[c].firstname >> h[c].lastname >> h[c].timeIn >> h[c].timeOut >> h[c].hours >> h[c].purpose;
+        //debugProfile(h[c]);
+        c++;
+    }
+    //cout << c << "\n";
+    dict = h;
+    return dict;
+} */
 
 /**
  * this function is meant to skip making the whole database part in my psuedocode. go from the raw data straight to CSV.
