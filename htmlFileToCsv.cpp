@@ -14,6 +14,9 @@ struct database
 bool Debug = true;
 database *dict;
 
+/**
+ * simple function designed just to open and output all the contents in the file specified.
+ */
 string readfile(string filename)
 {
     string result, add;
@@ -25,6 +28,10 @@ string readfile(string filename)
     src.close();
     return result;
 }
+
+/**
+ * works to extract the data we need from the HTML file.
+ */
 string getContentSource(string file)
 {
     stringstream lines(readfile(file));
@@ -45,6 +52,7 @@ string getContentSource(string file)
     text += sc.substr(0, sc.find("</textarea>"));
     return text;
 }
+
 /**
  * this function was made to simplify the bs tools c++ gives for string manipulation.
  */
@@ -80,7 +88,7 @@ database *sourceToDictionary(string source)
     int c = 0;
     string buffer;
     while (getline(src, buffer))
-{
+    {
         stringstream line(buffer);
         //cout << c << " " << buffer << "\n";
         line >> h[c].firstname >> h[c].lastname >> h[c].timeIn >> h[c].timeOut >> h[c].hours >> h[c].purpose;
@@ -121,6 +129,9 @@ string sourceToCsv(string source)
     return result;
 }
 
+/**
+ * places the final text into the file that we desire
+ */
 void outputCSV(string source)
 {
     stringstream src(source);
