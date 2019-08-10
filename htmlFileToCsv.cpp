@@ -217,6 +217,20 @@ int main(int argc, char *argv[])
             }
         }
     }
+    else
+    {
+        string list = listdir();
+        stringstream filter(list);
+        string select;
+        while (filter >> select)
+        {
+            if (select.find(".html") != -1)
+            {
+                payload += sourceToCsv(getContentSource(select));
+                remove(select.c_str());
+            }
+        }
+    }
     if (display)
     {
         cout << payload;
