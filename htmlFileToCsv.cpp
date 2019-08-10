@@ -38,17 +38,20 @@ string getContentSource(string file)
     string text, sc;
     getline(lines, sc);
     /* gets me to the beginning of the line that i need */
-    while (sc.find("<textarea") == -1 && !lines.eof())
+    while (sc.find("<textarea") == -1 && !lines.eof()) // throws out each line till it finds textarea in the line or stops once theres no more lines to search (aka dud)
     {
         getline(lines, sc);
     }
+    /* adds the date that starts on the first line */
     text = sc.substr(sc.find("<textarea") + 22, sc.length()) + "\n";
     getline(lines, sc);
+    /* keeps adding lines until it finds </textarea> or the file ends (aka dud) */
     while (sc.find("</textarea>") == -1 && !lines.eof())
     {
         text += sc + "\n";
         getline(lines, sc);
     }
+    /* gets the final data that begins just before </textarea> */
     text += sc.substr(0, sc.find("</textarea>"));
     return text;
 }
@@ -115,16 +118,16 @@ string sourceToCsv(string source)
     stringstream buffer;
     while (getline(src, line))
     {
-        buffer.str(line);
+        buffer.str(line); // refreshes line to split into pieces
         buffer >> firstname >> lastname >> timein >> timeout >> hours >> purpose;
-        while (buffer >> tpurpose)
+        while (buffer >> tpurpose) // anything that didnt fit into the line above gets combined into purpose via tpurpose
         {
             purpose += " " + tpurpose;
         }
         //hour = hours;
         result += firstname + " " + lastname + "," + timein + "," + timeout + "," + to_string(hours) + "," + purpose + "\n";
         purpose = "";
-        buffer.clear();
+        buffer.clear(); // resets the buffer so that it doesnt restart at eof
     }
     return result;
 }
@@ -135,13 +138,13 @@ string sourceToCsv(string source)
 void outputCSV(string source)
 {
     stringstream src(source);
-    ofstream output("names.csv", ios::app);
+    ofstream output("names.csv", ios::app); // this line opens names.csv and itll append everything to the file automatically
     string buffer;
     while (getline(src, buffer))
     {
         output << buffer << "\n";
     }
-    output << "\n";
+    output << "\n"; // adds a new line to the end to easily separate this runs data and the next use
 }
 
 int main()
