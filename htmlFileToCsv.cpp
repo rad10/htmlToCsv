@@ -12,6 +12,7 @@ using namespace std;
 }; */
 
 bool Debug = true;
+bool display = false;
 // database *dict;
 
 /**
@@ -197,6 +198,10 @@ int main(int argc, char *argv[])
                 remove(argv[i]);
             }
         }
+    }
+    if (display)
+    {
+        cout << payload;
     }
     outputCSV(payload);
 }
