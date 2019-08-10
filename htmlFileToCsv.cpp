@@ -174,6 +174,23 @@ int help()
     return 0;
 }
 
+/** 
+ * this function will make a list of all the files in the current directory and output them as a string separated by spaces for sorting.
+*/
+string listdir()
+{
+    string list = "";
+    DIR *dir = opendir(".");
+    struct dirent *ent;
+    while ((ent = readdir(dir)) != NULL)
+    {
+        list += ent->d_name;
+        list += " ";
+    }
+    closedir(dir);
+    return list;
+}
+
 int main(int argc, char *argv[])
 {
     string payload = "";
