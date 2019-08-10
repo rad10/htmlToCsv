@@ -14,10 +14,22 @@ and that is the full intention of this program.
 
 ### C++
 
-#### !!!Warning: this script is incomplete and does not work as intended yet!!!
-
 This variant is mostly setup for windows environment but it is made to work for both windows and linux.
 
 > Tested with *[MinGW32](https://http://www.mingw.org)*
 
 All setting should be setup properly with this variant. If you choose to use a different compiler, you may need to edit settings for it to work (if youre using vscode that is).
+
+#### Manual
+
+> ``htmlFileToCsv.exe [OPTION] [HTML File]``
+
+>> ``This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.``
+
+>> ``*INSTRUCTIONS:* save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.``
+
+>> ``*OPTIONS:*``
+
+>> ``*-h | --help* Prints this help screen.``
+
+>> ``*-d | --display* Prints the output of the CSV into the console as well as into the file.``;
