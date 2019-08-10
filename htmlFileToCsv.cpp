@@ -126,8 +126,9 @@ string sourceToCsv(string source)
         {
             purpose += " " + tpurpose;
         }
-        //hour = hours;
-        result += firstname + " " + lastname + "," + timein + "," + timeout + "," + to_string(hours) + "," + purpose + "\n";
+        stringstream h;
+        h << hours;
+        result += firstname + " " + lastname + "," + timein + "," + timeout + "," + h.str() + "," + purpose + "\n";
         purpose = "";
         buffer.clear(); // resets the buffer so that it doesnt restart at eof
     }
