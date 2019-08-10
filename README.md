@@ -26,10 +26,10 @@ All setting should be setup properly with this variant. If you choose to use a d
 
 >> ``This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.``
 
->> ``*INSTRUCTIONS:* save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.``
+>> ``INSTRUCTIONS: save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.``
 
->> ``*OPTIONS:*``
+>> ``OPTIONS:``
 
->> ``*-h | --help* Prints this help screen.``
+>> ``-h | --help Prints this help screen.``
 
->> ``*-d | --display* Prints the output of the CSV into the console as well as into the file.``;
+>> ``-d | --display Prints the output of the CSV into the console as well as into the file.``;
