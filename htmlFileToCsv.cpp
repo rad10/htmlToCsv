@@ -129,7 +129,7 @@ string sourceToCsv(string source)
         purpose = "";
         buffer.clear(); // resets the buffer so that it doesnt restart at eof
     }
-    return result;
+    return result + "\n";
 }
 
 /**
@@ -144,7 +144,6 @@ void outputCSV(string source)
     {
         output << buffer << "\n";
     }
-    output << "\n"; // adds a new line to the end to easily separate this runs data and the next use
 }
 
 int main()
