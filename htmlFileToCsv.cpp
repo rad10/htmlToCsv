@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
                 display = true;
             }
             temp = argv[i];
-            if (temp.find(".html"))
+            if (temp.find(".html") != -1)
             {
                 payload += sourceToCsv(getContentSource(argv[i]));
                 remove(argv[i]);
