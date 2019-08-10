@@ -146,7 +146,34 @@ void outputCSV(string source)
     }
 }
 
-int main()
+/** 
+ * Help function for the program if it is run on command prompt. it takes in the name of the program as an input.
+*/
+int help(string arg)
+{
+    cout << arg << " [OPTION] [HTML File]\n"
+         << "This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.\n"
+         << "INSTRUCTIONS: save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.\n"
+         << "OPTIONS:\n"
+         << "-h | --help\t\t\tPrints this help screen.\n"
+         << "-d | --display\t\t\tPrints the output of the CSV into the console as well as into the file.\n";
+    return 0;
+}
+/** 
+ * Help function for the program if it is run on command prompt.
+*/
+int help()
+{
+    cout << "htmlFileToCsv.exe [OPTION] [HTML File]\n"
+         << "This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.\n"
+         << "INSTRUCTIONS: save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.\n"
+         << "OPTIONS:\n"
+         << "-h | --help\t\t\tPrints this help screen.\n"
+         << "-d | --display\t\t\tPrints the output of the CSV into the console as well as into the file.\n";
+    return 0;
+}
+
+int main(int argc, char *argv[])
 {
     string csv = sourceToCsv(getContentSource("sheet1.html"));
     outputCSV(csv);
