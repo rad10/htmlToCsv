@@ -175,6 +175,28 @@ int help()
 
 int main(int argc, char *argv[])
 {
-    string csv = sourceToCsv(getContentSource("sheet1.html"));
-    outputCSV(csv);
+    string payload = "";
+    string temp, folder;
+    if (argc > 1)
+    {
+        for (int i = 1; i < argc; i++)
+        {
+            if (argv[i] == "-help" || argv[i] == "-h" || argv[i] == "--help" || argv[i] == "/help" || argv[i] == "/h" || argv[i] == "/?")
+            {
+                help(argv[0]);
+                return 0;
+            }
+            if (argv[1] == "-display" || argv[i] == "-d" || argv[i] == "--display" || argv[i] == "/display" || argv[i] == "/d")
+            {
+                display = true;
+            }
+            temp = argv[i];
+            if (temp.find(".html"))
+            {
+                payload += sourceToCsv(getContentSource(argv[i]));
+                remove(argv[i]);
+            }
+        }
+    }
+    outputCSV(payload);
 }
