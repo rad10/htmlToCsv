@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from sys import argv
 from os import listdir, unlink
 from shutil import rmtree
