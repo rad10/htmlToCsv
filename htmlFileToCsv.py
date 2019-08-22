@@ -1,6 +1,7 @@
 from sys import argv
 from os import listdir, unlink
 from shutil import rmtree
+from bs4 import BeautifulSoup
 # Functions
 Debug = False
 
@@ -32,8 +33,9 @@ def isNum(num):
     except:
         return False
 
+
 def help():
-    print(__file__, "[OPTION]","[HTML File]")
+    print(__file__, "[OPTION]", "[HTML File]")
     print("This program is intended to take data from inkspace HTML files and append it to a CSV file in the same directory.")
     print("INSTRUCTIONS: save inkspace output to an HTML file in the same directory as this program. Once done, run this program. Profit.")
     print("OPTIONS:")
@@ -42,14 +44,9 @@ def help():
 
 
 # Generator
-def getContentArray(file):
-    """the purpose of the function is to take all the content in the HTML and return a matrix array.
-    file: a string containing the contents from a file given by readfile().
-    return: a string[][] matrix with important data scraped from file.
-    """
+def htmlToSource(file):
     lines = readfile(file).split("\n")
     #debug(("lines:", lines))
-    directory = []  # the matrix used to store conent
     # all the content starts after the tag <textarea reeadonly="">
     text = lines[2][lines[2].find("<textarea")+22:]
     debug(("text", text))
@@ -63,6 +60,15 @@ def getContentArray(file):
     # cuts out all info after </textarea>, then splits the new dictionary to define people and their attributes
     people = text[:text.find("</textarea>")].split("\n")
     debug(("people:", people))
+    return people
+
+
+def getContentArray(people):
+    """the purpose of the function is to take all the content in the HTML and return a matrix array.
+    file: a string containing the contents from a file given by readfile().
+    return: a string[][] matrix with important data scraped from file.
+    """
+    directory = []  # the matrix used to store conent
     for i in people:
         # gets the attribute of each individual person and defines it by a space
         attr = i.split(" ")
@@ -129,7 +135,7 @@ def main():
             except:
                 continue
         #debug("listdir: " + str(input))
-    if(len(input)==0):
+    if(len(input) == 0):
         print("ERROR: No HTML Files imported and none in current directory!")
         help()
         return
