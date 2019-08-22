@@ -135,7 +135,7 @@ def main():
                 input.append(i)
         #debug("argv: " + str(input))
     if(len(input) == 0):
-        for i in listdir():
+        for i in listdir("."):
             try:
                 if (i.split(".")[1] == "html"):
                     input.append(i)
