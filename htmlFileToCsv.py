@@ -45,7 +45,7 @@ def help():
 
 
 # Generator
-def htmlToSource(file):
+""" def htmlToSource(file):
     lines = readfile(file).split("\n")
     #debug(("lines:", lines))
     # all the content starts after the tag <textarea reeadonly="">
@@ -62,6 +62,12 @@ def htmlToSource(file):
     people = text[:text.find("</textarea>")].split("\n")
     debug(("people:", people))
     return people
+ """
+
+
+def htmlToSource(file):
+    soup = BeautifulSoup(readfile(file), "lxml")
+    return soup.find("textarea", readonly="").text.split("\n")
 
 
 def getContentArray(people):
@@ -143,7 +149,7 @@ def main():
     output = ''
     for i in input:
         # debug(i+":"+i.split(".")[1].lower())
-        output += arrayToCsv(getContentArray(i))
+        output += arrayToCsv(getContentArray(htmlToSource(i)))
         try:
             # deletes the html used as to not accidentally add it to csv again
             unlink(i)
